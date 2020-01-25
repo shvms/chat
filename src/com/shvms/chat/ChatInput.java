@@ -10,7 +10,6 @@ public class ChatInput extends Thread {
 
     public ChatInput(Socket connectionSocket) throws IOException {
         super();
-        System.out.println("[CHATINPUT THREAD STARTS]");
         this.connectionSocket = connectionSocket;
         this.ipAddr = connectionSocket.getInetAddress().toString();
         this.inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
@@ -21,7 +20,6 @@ public class ChatInput extends Thread {
         String msg;
         try {
             while (true) {
-                System.out.println("chat i/p");
                 msg = inFromClient.readLine();
                 if (msg == null)    // first message
                     continue;
@@ -31,7 +29,7 @@ public class ChatInput extends Thread {
                     System.out.println("[CONNECTION CLOSED]");
                     break;
                 }
-                System.out.printf("[%s] %s", ipAddr, msg);
+                System.out.printf("[%s] %s\n", ipAddr, msg);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -12,7 +12,6 @@ public class ChatOutput extends Thread {
 
     public ChatOutput(Socket connectionSocket) throws IOException {
         super();
-        System.out.println("[CHATOUTPUT THREAD STARTS]");
         this.connectionSocket = connectionSocket;
 
         this.outputStream = connectionSocket.getOutputStream();
@@ -24,9 +23,7 @@ public class ChatOutput extends Thread {
         String reply;
         try {
             while (true) {
-                System.out.println("chat o/p");
                 reply = inFromUser.readLine();
-                System.out.println("Reply: " + reply);
 
                 if (reply.compareToIgnoreCase(CLOSE) == 0) {
                     close();

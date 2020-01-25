@@ -14,11 +14,11 @@ public class TCPClient {
         Socket clientSocket = new Socket(addr.ip, addr.port);
         System.out.println("[CONNECTION ESTABLISHED] " + addr.ip);
 
-        Thread output = new ClientChatOutput(clientSocket);
-        output.start();
-
         Thread input = new ClientChatInput(clientSocket);
         input.start();
+
+        Thread output = new ClientChatOutput(clientSocket);
+        output.start();
     }
 
     private static class ClientChatInput extends Thread {
@@ -45,7 +45,7 @@ public class TCPClient {
                         break;
                     }
 
-                    System.out.printf("[%s] %s", ipAddr, msg);
+                    System.out.printf("[%s] %s\n", ipAddr, msg);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

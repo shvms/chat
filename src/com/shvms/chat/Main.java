@@ -28,8 +28,12 @@ public class Main {
                 server.startServer();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: Port should be a number.");
+            } catch (PortException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
-                System.out.println("ERROR: Port should be a number between 0-65535");
+                System.out.println("Server closed unexpectedly");
             }
         } else if (args[0].compareTo("-c") == 0 && args.length > 2) {
             try {
@@ -38,8 +42,12 @@ public class Main {
                 client.startClient();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: Port should be a number.");
+            } catch (PortException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
-                System.out.println("ERROR: Port should be a number between 0-65535");
+                System.out.println("Client closed unexpectedly");
             }
         }
     }
