@@ -20,7 +20,8 @@ public class Main {
 
         if (args[0].compareTo("-h") == 0) {
             System.out.println("Usage\n-h - help\n-s <port> - starts server at given port\n-c " +
-                    "<host-ip> <host-port> - starts client for given host address");
+                    "<host-ip> <host-port> - starts client for given host address\n\n" +
+                    "Special file options\n@image\\<image-file> - Sends <image-file>");
         } else if (args[0].compareTo("-s") == 0 && args.length > 1) {
             try {
                 addr = new ServerAddress(null, Integer.parseInt(args[1]));

@@ -1,5 +1,7 @@
 package com.shvms.chat;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 
@@ -20,17 +22,27 @@ public class ChatOutput extends Thread {
 
     @Override
     public void run() {
-        String reply;
+        String msg;
         try {
             while (true) {
-                reply = inFromUser.readLine();
+                msg = inFromUser.readLine();
 
-                if (reply.compareToIgnoreCase(CLOSE) == 0) {
+                if (msg.compareToIgnoreCase(CLOSE) == 0) {
                     close();
                     break;
                 }
 
-                outputStream.write((reply + "\n").getBytes());
+                if (msg.startsWith("@image/")) {
+                    try {
+                        ImageFile img = new ImageFile(msg.substring("@image/".length()));
+                        msg = img.getBase64String();
+                    } catch (Exception e) {
+                        System.out.println("ERROR: Couldn't find the required image.");
+                        continue;
+                    }
+                }
+
+                outputStream.write((msg + "\n").getBytes());
             }
         } catch (IOException e) {
             e.printStackTrace();
