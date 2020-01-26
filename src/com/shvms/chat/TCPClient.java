@@ -48,6 +48,7 @@ public class TCPClient {
                     if (msg.compareToIgnoreCase("close") == 0) {
                         clientSocket.close();
                         System.out.println("[CONNECTION CLOSED]");
+                        System.exit(0);
                         break;
                     }
 
@@ -119,6 +120,7 @@ public class TCPClient {
             outputStream.write("CLOSE\n".getBytes());
             clientSocket.close();
             System.out.println("[CONNECTION CLOSED]");
+            System.exit(0);
         }
     }
 }

@@ -34,6 +34,7 @@ public class ChatInput extends Thread {
                 if (msg.compareToIgnoreCase("close") == 0) {
                     connectionSocket.close();
                     System.out.println("[CONNECTION CLOSED]");
+                    System.exit(0);
                     break;
                 }
 

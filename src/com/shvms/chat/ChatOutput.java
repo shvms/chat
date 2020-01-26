@@ -1,7 +1,5 @@
 package com.shvms.chat;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 
@@ -53,5 +51,6 @@ public class ChatOutput extends Thread {
         outputStream.write((CLOSE + "\n").getBytes());
         connectionSocket.close();
         System.out.println("[CONNECTION CLOSED]");
+        System.exit(0);
     }
 }
