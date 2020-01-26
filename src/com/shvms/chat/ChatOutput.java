@@ -4,11 +4,11 @@ import java.io.*;
 import java.net.*;
 
 public class ChatOutput extends Thread {
+    private static final String CLOSE = "CLOSE";
+
     private Socket connectionSocket;
     private OutputStream outputStream;
     private BufferedReader inFromUser;
-
-    private static String CLOSE = "CLOSE";
 
     public ChatOutput(Socket connectionSocket) throws IOException {
         super();

@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class ChatInput extends Thread {
     private static final Pattern pat = Pattern.compile("^data:image/([\\w]+);base64,([\\w+=/]+)$");
+    private static final String CLOSE = "CLOSE";
 
     private Socket connectionSocket;
     private String ipAddr;
@@ -31,7 +32,7 @@ public class ChatInput extends Thread {
                 if (msg == null)    // first message
                     continue;
 
-                if (msg.compareToIgnoreCase("close") == 0) {
+                if (msg.compareToIgnoreCase(CLOSE) == 0) {
                     connectionSocket.close();
                     System.out.println("[CONNECTION CLOSED]");
                     System.exit(0);
@@ -56,7 +57,6 @@ public class ChatInput extends Thread {
                     System.out.printf("[%s] %s received.\n", ipAddr, fileName);
                     continue;
                 }
-
 
                 System.out.printf("[%s] %s\n", ipAddr, msg);
             }
